@@ -35,11 +35,11 @@ def call(body) {
                 }
             }
 
-            stage('checkout git') {
-                steps {
-                    git branch: pipelineParams.branch, credentialsId: 'fa186de2-1a7e-4d16-9be3-fed9dc6c80ea', url: pipelineParams.scmUrl
-                }
-            }
+//            stage('checkout git') {
+//                steps {
+//                    git branch: pipelineParams.branch, credentialsId: 'fa186de2-1a7e-4d16-9be3-fed9dc6c80ea', url: pipelineParams.scmUrl
+//                }
+//            }
 
             stage('Build') {
                 steps {
