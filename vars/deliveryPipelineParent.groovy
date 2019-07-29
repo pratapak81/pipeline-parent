@@ -51,6 +51,14 @@ def call(body) {
                     }
                 }
             }
+
+            stage('SonarQube Analysis') {
+                steps {
+                    withSonarQubeEnv('sonar-1') {
+                        sh 'mvn sonar:sonar'
+                    }
+                }
+            }
         }
 
         post {
