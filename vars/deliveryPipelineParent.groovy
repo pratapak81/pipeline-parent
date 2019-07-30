@@ -62,8 +62,11 @@ def call(body) {
 
             stage('Deploy') {
                 steps {
-                    withCredentials([string(credentialsId: 'VM_USERNAME_PASSWORD', variable: 'USERNAME')]) {
-                        echo "post build always $USERNAME"
+                    withCredentials([usernamePassword(credentialsId: 'VM_USERNAME_PASSWORD', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        sh 'echo $PASSWORD'
+                        echo USERNAME
+                        echo PASSWORD
+                        echo "username is $USERNAME"
                     }
                 }
             }
