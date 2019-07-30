@@ -52,13 +52,23 @@ def call(body) {
                 }
             }
 
-            stage('SonarQube Analysis') {
+            /*stage('SonarQube Analysis') {
                 steps {
                     withSonarQubeEnv('sonar-1') {
                         sh 'mvn sonar:sonar'
                     }
                 }
+            }*/
+
+            stage('Deploy') {
+                steps {
+                    withCredentials([string(credentialsId: 'VM_USERNAME_PASSWORD', variable: 'USERNAME')]) {
+                        echo "post build always $USERNAME"
+                    }
+                }
             }
+
+
         }
 
         post {
