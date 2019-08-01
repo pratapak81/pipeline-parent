@@ -88,7 +88,7 @@ def call(body) {
             }*/
 
             stage('Docker') {
-                agent {
+                /*agent {
                     dockerfile true
                 }
                 steps {
@@ -96,6 +96,15 @@ def call(body) {
                         docker.withRegistry('https://hub.docker.com', 'DOCKER_HUB_CREDENTIAL') {
                             def customImage = docker.build("spring-hello-world:latest");
                             customImage.push();
+                        }
+                    }
+                }*/
+                agent { dockerfile true }
+                stages {
+                    stage('Test') {
+                        steps {
+                            sh 'node --version'
+                            sh 'svn --version'
                         }
                     }
                 }
