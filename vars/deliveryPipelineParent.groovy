@@ -7,9 +7,9 @@ def call(body) {
 
     def remote = [:]
     remote.name = 'VM Server'
-    remote.host = '10.184.96.145'
-    remote.user = 'digital'
-    remote.password = 'Password@123'
+    remote.host = '10.12.44.121'
+    remote.user = 'ubuntu'
+    remote.password = 'ubuntu123'
     remote.allowAnyHosts = true
 
     pipeline {
