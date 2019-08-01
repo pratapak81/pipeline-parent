@@ -92,10 +92,11 @@ def call(body) {
                     dockerfile true
                 }
                 steps {
-
-                    docker.withRegistry('https://hub.docker.com', 'DOCKER_HUB_CREDENTIAL') {
-                        def customImage = docker.build("spring-hello-world:latest");
-                        customImage.push();
+                    script {
+                        docker.withRegistry('https://hub.docker.com', 'DOCKER_HUB_CREDENTIAL') {
+                            def customImage = docker.build("spring-hello-world:latest");
+                            customImage.push();
+                        }
                     }
                 }
             }
