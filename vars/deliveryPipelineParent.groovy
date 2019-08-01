@@ -1,6 +1,6 @@
 def call(body) {
     // evaluate the body block, and collect configuration into the object
-    def pipelineParams= [:]
+    def pipelineParams = [:]
     body.resolveStrategy = Closure.DELEGATE_FIRST
     body.delegate = pipelineParams
     body()
@@ -26,7 +26,7 @@ def call(body) {
         }
 
         parameters {
-            choice(description: 'Choose a value?',name: 'environment',choices: ['LOCAL', 'PROD'])
+            choice(description: 'Choose a value?', name: 'environment', choices: ['LOCAL', 'PROD'])
             string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
         }
 
@@ -68,7 +68,7 @@ def call(body) {
                 }
             }*/
 
-            stage('Deploy') {
+            /*stage('Deploy') {
                 steps {
                     withCredentials([usernamePassword(credentialsId: 'VM_USERNAME_PASSWORD', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh 'echo $PASSWORD'
@@ -77,13 +77,26 @@ def call(body) {
                         echo "username is $USERNAME"
                     }
                 }
-            }
+            }*/
 
-            stage('Remote SSH') {
+            /*stage('Remote SSH') {
                 steps {
                     sh 'ls -a'
                     writeFile file: 'target/spring-hello-world-0.0.1-SNAPSHOT.jar', text: 'ls -lrt'
                     sshPut remote: remote, from: 'target/spring-hello-world-0.0.1-SNAPSHOT.jar', into: 'Downloads'
+                }
+            }*/
+
+            stage('Docker') {
+                agent {
+                    dockerfile true
+                }
+                steps {
+
+                    docker.withRegistry('https://hub.docker.com', 'DOCKER_HUB_CREDENTIAL') {
+                        def customImage = docker.build("spring-hello-world:latest");
+                        customImage.push();
+                    }
                 }
             }
         }
