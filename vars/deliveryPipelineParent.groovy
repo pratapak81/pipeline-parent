@@ -102,7 +102,13 @@ def call(body) {
                 }
                 steps {
                     script {
-                       sh 'hello last'
+                        docker.withRegistry('https://hub.docker.com/', 'DOCKER_HUB_CREDENTIAL') {
+
+                            def customImage = docker.build("hello-pratap:${env.BUILD_ID}")
+
+                            /* Push the container to the custom Registry */
+                            customImage.push()
+                        }
                     }
                 }
             }
