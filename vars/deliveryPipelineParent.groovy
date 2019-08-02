@@ -96,7 +96,7 @@ def call(body) {
                 }
             }
 
-            stage {
+            stage('Test Docker') {
                 agent {
                     docker { image 'node:7-alpine' }
                 }
