@@ -79,13 +79,13 @@ def call(body) {
                 }
             }*/
 
-            /*stage('Remote SSH') {
+            stage('Remote SSH') {
                 steps {
                     sh 'ls -a'
                     writeFile file: 'target/spring-hello-world-0.0.1-SNAPSHOT.jar', text: 'ls -lrt'
                     sshPut remote: remote, from: 'target/spring-hello-world-0.0.1-SNAPSHOT.jar', into: 'Downloads'
                 }
-            }*/
+            }
 
             stage('Docker Initialize'){
                 steps {
