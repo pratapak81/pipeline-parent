@@ -87,6 +87,11 @@ def call(body) {
                 }
             }*/
 
+            stage('Docker Initialize'){
+                def dockerHome = tool 'pratap-docker'
+                env.PATH = "${dockerHome}/bin:${env.PATH}"
+            }
+
             stage('Docker') {
                 /*agent {
                     dockerfile true
@@ -103,8 +108,7 @@ def call(body) {
                 stages {
                     stage('Test') {
                         steps {
-                            sh 'node --version'
-                            sh 'svn --version'
+                            sh 'java --version'
                         }
                     }
                 }
