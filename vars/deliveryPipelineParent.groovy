@@ -96,7 +96,7 @@ def call(body) {
                 }
             }*/
 
-            stage('Docker') {
+            /*stage('Docker') {
                 agent {
                     dockerfile true
                 }
@@ -108,7 +108,7 @@ def call(body) {
                         }
                     }
                 }
-            }
+            }*/
         }
 
         post {
