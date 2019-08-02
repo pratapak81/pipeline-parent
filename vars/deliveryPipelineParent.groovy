@@ -96,18 +96,18 @@ def call(body) {
                 }
             }
 
-            stage('Docker') {
+            /*stage('Docker') {
                 agent {
                     dockerfile true
                 }
-                /*steps {
+                *//*steps {
                     script {
                         docker.withRegistry('https://hub.docker.com', 'DOCKER_HUB_CREDENTIAL') {
                             def customImage = docker.build("pratapak81/spring-hello-world", ".")
                             customImage.push()
                         }
                     }
-                }*/
+                }*//*
                 stages {
                     stage('Test') {
                         steps {
@@ -115,7 +115,7 @@ def call(body) {
                         }
                     }
                 }
-            }
+            }*/
         }
 
         post {
