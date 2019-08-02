@@ -91,7 +91,7 @@ def call(body) {
                 steps {
                     script {
                         def dockerHome = tool 'pratap-docker'
-                        env.PATH = "${dockerHome}/bin:${env.PATH}"
+                        //env.PATH = "${dockerHome}/bin:${env.PATH}"
                     }
                 }
             }
