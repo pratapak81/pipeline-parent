@@ -52,9 +52,6 @@ def call(body) {
             stage('Build') {
                 steps {
                     sh 'mvn -Dmaven.test.failure.ignore=true install'
-                    sh 'ls -a'
-                    sh 'cd /target bash'
-                    sh 'ls -a'
                 }
                 post {
                     success {
