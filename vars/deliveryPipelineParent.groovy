@@ -102,13 +102,8 @@ def call(body) {
                 }*/
                 steps {
                     script {
-                        docker.withRegistry('', 'DOCKER_HUB_CREDENTIAL') {
+                        def customImage = docker.build("hello-world:latest", ".")
 
-                            def customImage = docker.build("hello-world:latest")
-
-                            /* Push the container to the custom Registry */
-                            customImage.push()
-                        }
                     }
                 }
             }
