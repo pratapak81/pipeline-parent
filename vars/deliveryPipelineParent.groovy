@@ -97,29 +97,12 @@ def call(body) {
             }
 
             stage('Docker') {
-                /*agent {
+                agent {
                     dockerfile true
-                }*/
+                }
                 steps {
                     script {
-                        /*docker.withTool('pratap-docker') {
-                            docker.withRegistry('https://hub.docker.com', 'DOCKER_HUB_CREDENTIAL') {
-                                def customImage = docker.build("pratapak81/spring-hello-world", ".").inside("--volume=/var/run/docker.sock:/var/run/docker.sock")
-                                customImage.push()
-                            }
-                        }*/
-                        /*docker.withServer('tcp://10.12.44.121:22', 'UBUNTU_VM_USERNAME_PASSWORD') {
-                            docker.image('mysql:5').withRun('-p 3306:3306') {
-                                *//* do things *//*
-                            }
-                        }*/
-                        docker.withRegistry('pratapak81/pratap-hello') {
-
-                            def customImage = docker.build("pratap-hello-world:${env.BUILD_ID}")
-
-                            /* Push the container to the custom Registry */
-                            customImage.push()
-                        }
+                       sh 'hello last'
                     }
                 }
             }
