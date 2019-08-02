@@ -51,7 +51,7 @@ def call(body) {
 
             stage('Build') {
                 steps {
-                    sh 'mvn -Dmaven.test.failure.ignore=true install'
+                    sh 'mvn clean -Dmaven.test.failure.ignore=true install'
                 }
                 post {
                     success {
