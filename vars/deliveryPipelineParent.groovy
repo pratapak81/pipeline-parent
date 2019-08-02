@@ -87,14 +87,14 @@ def call(body) {
                 }
             }*/
 
-            stage('Docker Initialize'){
+            /*stage('Docker Initialize'){
                 steps {
                     script {
                         def dockerHome = tool 'pratap-docker'
                         //env.PATH = "${dockerHome}/bin:${env.PATH}"
                     }
                 }
-            }
+            }*/
 
             stage('Docker') {
                 agent {
