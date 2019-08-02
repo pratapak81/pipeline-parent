@@ -96,39 +96,19 @@ def call(body) {
                 }
             }
 
-            stage('Test Docker') {
+            stage('Docker') {
                 agent {
-                    docker { image 'node:7-alpine' }
+                    dockerfile true
                 }
-                stages {
-                    stage('Test') {
-                        steps {
-                            sh 'node --version'
+                steps {
+                    script {
+                        docker.withRegistry('https://hub.docker.com', 'DOCKER_HUB_CREDENTIAL') {
+                            def customImage = docker.build("pratapak81/spring-hello-world", ".").inside("--volume=/var/run/docker.sock:/var/run/docker.sock")
+                            customImage.push()
                         }
                     }
                 }
             }
-
-            /*stage('Docker') {
-                agent {
-                    dockerfile true
-                }
-                *//*steps {
-                    script {
-                        docker.withRegistry('https://hub.docker.com', 'DOCKER_HUB_CREDENTIAL') {
-                            def customImage = docker.build("pratapak81/spring-hello-world", ".")
-                            customImage.push()
-                        }
-                    }
-                }*//*
-                stages {
-                    stage('Test') {
-                        steps {
-                            sh 'java --version'
-                        }
-                    }
-                }
-            }*/
         }
 
         post {
