@@ -89,8 +89,10 @@ def call(body) {
 
             stage('Docker Initialize'){
                 steps {
-                    def dockerHome = tool 'pratap-docker'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                    script {
+                        def dockerHome = tool 'pratap-docker'
+                        env.PATH = "${dockerHome}/bin:${env.PATH}"
+                    }
                 }
             }
 
