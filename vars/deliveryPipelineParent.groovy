@@ -108,10 +108,17 @@ def call(body) {
                                 customImage.push()
                             }
                         }*/
-                        docker.withServer('tcp://10.12.44.121:22', 'UBUNTU_VM_USERNAME_PASSWORD') {
+                        /*docker.withServer('tcp://10.12.44.121:22', 'UBUNTU_VM_USERNAME_PASSWORD') {
                             docker.image('mysql:5').withRun('-p 3306:3306') {
-                                /* do things */
+                                *//* do things *//*
                             }
+                        }*/
+                        docker.withRegistry('https://hub.docker.com', 'DOCKER_HUB_CREDENTIAL') {
+
+                            def customImage = docker.build("pratap-hello-world:${env.BUILD_ID}")
+
+                            /* Push the container to the custom Registry */
+                            customImage.push()
                         }
                     }
                 }
