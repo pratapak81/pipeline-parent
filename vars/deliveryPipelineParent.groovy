@@ -113,7 +113,7 @@ def call(body) {
                                 *//* do things *//*
                             }
                         }*/
-                        docker.withRegistry('https://hub.docker.com', 'DOCKER_HUB_CREDENTIAL') {
+                        docker.withRegistry('pratapak81/pratap-hello') {
 
                             def customImage = docker.build("pratap-hello-world:${env.BUILD_ID}")
 
