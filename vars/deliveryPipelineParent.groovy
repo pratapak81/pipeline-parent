@@ -49,16 +49,16 @@ def call(body) {
 //                }
 //            }
 
-//            stage('Build') {
-//                steps {
-//                    sh 'mvn -Dmaven.test.failure.ignore=true install'
-//                }
-//                post {
-//                    success {
-//                        junit 'target/surefire-reports/**/*.xml'
-//                    }
-//                }
-//            }
+            stage('Build') {
+                steps {
+                    sh 'mvn -Dmaven.test.failure.ignore=true install'
+                }
+                post {
+                    success {
+                        junit 'target/surefire-reports/**/*.xml'
+                    }
+                }
+            }
 
             /*stage('SonarQube Analysis') {
                 steps {
@@ -97,22 +97,14 @@ def call(body) {
             }
 
             stage('Docker') {
-                /*agent {
+                agent {
                     dockerfile true
                 }
                 steps {
                     script {
                         docker.withRegistry('https://hub.docker.com', 'DOCKER_HUB_CREDENTIAL') {
-                            def customImage = docker.build("spring-hello-world:latest");
-                            customImage.push();
-                        }
-                    }
-                }*/
-                agent { dockerfile true }
-                stages {
-                    stage('Test') {
-                        steps {
-                            sh 'java --version'
+                            def customImage = docker.build("pratapak81/spring-hello-world")
+                            customImage.push()
                         }
                     }
                 }
