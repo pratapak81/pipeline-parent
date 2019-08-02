@@ -102,10 +102,11 @@ def call(body) {
                 }
                 steps {
                     script {
-                        docker.withRegistry('https://hub.docker.com', 'DOCKER_HUB_CREDENTIAL') {
+                        /*docker.withRegistry('https://hub.docker.com', 'DOCKER_HUB_CREDENTIAL') {
                             def customImage = docker.build("pratapak81/spring-hello-world", ".")
                             customImage.push()
-                        }
+                        }*/
+                        sh 'docker images'
                     }
                 }
             }
