@@ -97,14 +97,14 @@ def call(body) {
             }
 
             stage('Docker') {
-                agent {
+                /*agent {
                     dockerfile true
-                }
+                }*/
                 steps {
                     script {
                         docker.withRegistry('https://hub.docker.com/', 'DOCKER_HUB_CREDENTIAL') {
 
-                            def customImage = docker.build("hello-pratap:${env.BUILD_ID}")
+                            def customImage = docker.build("hello-world:latest")
 
                             /* Push the container to the custom Registry */
                             customImage.push()
