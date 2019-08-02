@@ -97,7 +97,7 @@ def call(body) {
             }
 
             stage('Docker') {
-                agent {
+                /*agent {
                     dockerfile true
                 }
                 steps {
@@ -108,6 +108,11 @@ def call(body) {
                                 customImage.push()
                             }
                         }
+                    }
+                }*/
+                docker.withServer('tcp://10.12.44.121:22', 'UBUNTU_VM_USERNAME_PASSWORD') {
+                    docker.image('mysql:5').withRun('-p 3306:3306') {
+                        /* do things */
                     }
                 }
             }
