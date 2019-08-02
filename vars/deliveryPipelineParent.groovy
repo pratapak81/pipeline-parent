@@ -102,9 +102,11 @@ def call(body) {
                 }
                 steps {
                     script {
-                        docker.withRegistry('https://hub.docker.com', 'DOCKER_HUB_CREDENTIAL') {
-                            def customImage = docker.build("pratapak81/spring-hello-world", ".").inside("--volume=/var/run/docker.sock:/var/run/docker.sock")
-                            customImage.push()
+                        docker.withTool('pratap-docker') {
+                            docker.withRegistry('https://hub.docker.com', 'DOCKER_HUB_CREDENTIAL') {
+                                def customImage = docker.build("pratapak81/spring-hello-world", ".").inside("--volume=/var/run/docker.sock:/var/run/docker.sock")
+                                customImage.push()
+                            }
                         }
                     }
                 }
