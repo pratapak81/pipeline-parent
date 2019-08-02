@@ -100,13 +100,19 @@ def call(body) {
                 agent {
                     dockerfile true
                 }
-                steps {
+                /*steps {
                     script {
-                        /*docker.withRegistry('https://hub.docker.com', 'DOCKER_HUB_CREDENTIAL') {
+                        docker.withRegistry('https://hub.docker.com', 'DOCKER_HUB_CREDENTIAL') {
                             def customImage = docker.build("pratapak81/spring-hello-world", ".")
                             customImage.push()
-                        }*/
-                        sh 'docker images'
+                        }
+                    }
+                }*/
+                stages {
+                    stage('Test') {
+                        steps {
+                            sh 'java --version'
+                        }
                     }
                 }
             }
