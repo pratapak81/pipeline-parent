@@ -18,7 +18,6 @@ def call(body) {
         tools {
             maven 'Maven'
             jdk 'jdk8'
-            docker 'pratap-docker'
         }
 
         environment {
@@ -88,10 +87,12 @@ def call(body) {
                 }
             }*/
 
-            /*stage('Docker Initialize'){
-                def dockerHome = tool 'pratap-docker'
-                env.PATH = "${dockerHome}/bin:${env.PATH}"
-            }*/
+            stage('Docker Initialize'){
+                steps {
+                    def dockerHome = tool 'pratap-docker'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                }
+            }
 
             stage('Docker') {
                 /*agent {
