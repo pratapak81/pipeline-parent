@@ -107,7 +107,7 @@ def call(body) {
                             customImage.push()
                         }
                         //sshCommand remote: remote, command: "docker save pratapak/hello-world:latest | docker load"
-                        sh 'docker save pratapak/hello-world:latest | ssh -C ubuntu@10.12.44.121 docker load'
+                        sh 'docker save pratapak/hello-world:latest | ssh -C ubuntu:ubuntu123@10.12.44.121 docker load'
                     }
 
                 }
