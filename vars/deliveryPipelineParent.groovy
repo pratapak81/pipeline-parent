@@ -102,7 +102,7 @@ def call(body) {
                 }*/
                 steps {
                     script {
-                        def customImage = docker.build("pratapak81/hello-world:latest", ".")
+                        def customImage = docker.build("pratapak/hello-world:latest", ".")
                         docker.withRegistry( '', "DOCKER_HUB_CREDENTIAL" ) {
                             customImage.push()
                         }
