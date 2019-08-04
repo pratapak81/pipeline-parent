@@ -107,7 +107,7 @@ def call(body) {
                             customImage.push()
                         }*/
                         //sshCommand remote: remote, command: "docker save pratapak/hello-world:latest | docker load"
-                        sh 'docker save pratapak/hello-world:latest | ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -C ubuntu:ubuntu123@10.12.44.121 docker load'
+                        sh 'docker save pratapak/hello-world:latest | ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -o StrictHostKeyChecking=no -C ubuntu:ubuntu123@10.12.44.121 docker load'
                     }
 
                 }
