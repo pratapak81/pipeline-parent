@@ -106,7 +106,7 @@ def call(body) {
                         docker.withRegistry( '', "DOCKER_HUB_CREDENTIAL" ) {
                             customImage.push()
                         }
-                        sshCommand remote: remote, command: "docker save pratapak/hello-world:latest | ssh -C ubuntu@10.12.44.121 docker load"
+                        sshCommand remote: remote, command: "docker save pratapak/hello-world:latest | docker load"
                     }
 
                 }
