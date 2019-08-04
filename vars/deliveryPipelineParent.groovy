@@ -102,12 +102,12 @@ def call(body) {
                 }*/
                 steps {
                     script {
-                        def customImage = docker.build("pratapak/hello-world:latest", ".")
+                        /*def customImage = docker.build("pratapak/hello-world:latest", ".")
                         docker.withRegistry( '', "DOCKER_HUB_CREDENTIAL" ) {
                             customImage.push()
-                        }
+                        }*/
                         //sshCommand remote: remote, command: "docker save pratapak/hello-world:latest | docker load"
-                        sh 'docker save pratapak/hello-world:latest | ssh -C ubuntu:ubuntu123@10.12.44.121 docker load'
+                        sh 'docker save pratapak/hello-world:latest | ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -C ubuntu:ubuntu123@10.12.44.121 docker load'
                     }
 
                 }
