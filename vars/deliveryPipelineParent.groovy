@@ -106,10 +106,10 @@ def call(body) {
                         docker.withRegistry( '', "DOCKER_HUB_CREDENTIAL" ) {
                             customImage.push()
                         }*/
-                        //sshCommand remote: remote, command: "docker save pratapak/hello-world:latest | docker load"
                         //sh 'docker save pratapak/hello-world:latest | ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -o StrictHostKeyChecking=no -o PasswordAuthentication=yes -C ubuntu:ubuntu123@10.12.44.121 docker load'
                         sh 'docker save -o /var/jenkins_home/workspace/hello-world-pipeline_master/target/hello-world.tar pratapak/hello-world:latest'
                         sshPut remote: remote, from: 'target/hello-world.tar', into: 'Downloads'
+                        sshCommand remote: remote, command: "docker load -i /home/ubuntu/Downloads/hello-world.tar"
                     }
 
                 }
